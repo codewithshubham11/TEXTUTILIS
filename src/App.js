@@ -13,46 +13,45 @@ import {
 
 
 function App() {
- const[mode,setMode] =useState('light'); // whether darkmode enabled or not
-const [alert,setAlert]=useState(null);
+  const [mode, setMode] = useState('light'); // whether darkmode enabled or not
+  const [alert, setAlert] = useState(null);
 
-const showAlert=(message,type)=>{
-setAlert({
-  msg:message,
-  type:type
-})
-setTimeout(() => {
-  setAlert(null);
-}, 1500);
-}
- const toggleMode=()=>{
-  if(mode==='light')
-    {
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type
+    })
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500);
+  }
+  const toggleMode = () => {
+    if (mode === 'light') {
       setMode('dark');
-      document.body.style.backgroundColor='grey';
-      showAlert("Dark mode has been enabled" , "success");
+      document.body.style.backgroundColor = 'grey';
+      showAlert("Dark mode has been enabled", "success");
     }
-    else{
+    else {
       setMode('light');
-      document.body.style.backgroundColor='white';
-      showAlert("Light mode has been enabled" , "success");
+      document.body.style.backgroundColor = 'white';
+      showAlert("Light mode has been enabled", "success");
     }
- }
-      return (
+  }
+  return (
     <>
-   <BrowserRouter>
-      <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
-      <Alert alert={alert}/>
-      <div className='container my-3'>
-             <Routes>
-          <Route exact path="/about"
-          element= {<About mode={mode}/>}></Route>
-          <Route exact path="/home"
-         element={<TextForm showAlert={showAlert} heading="Try Textutils- Word Counter Character Counter Remove Extra Spaces" mode={mode} />}>
-          </Route>
+      <BrowserRouter>
+        <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <div className='container my-3'>
+          <Routes>
+            <Route exact path="/about"
+              element={<About mode={mode} />}></Route>
+            <Route exact path="/home"
+              element={<TextForm showAlert={showAlert} heading="Try Textutils- Word Counter Character Counter Remove Extra Spaces" mode={mode} />}>
+            </Route>
           </Routes>
-      </div>
-     </BrowserRouter>
+        </div>
+      </BrowserRouter>
     </>
   );
 }
